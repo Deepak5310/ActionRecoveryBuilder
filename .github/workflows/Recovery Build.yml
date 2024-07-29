@@ -14,7 +14,7 @@ on:
       DEVICE_TREE_URL:
         description: "DEVICE_TREE_URL"
         required: true
-        default: "https://github.com/sakshiagrwal/device_xiaomi_spes-TWRP.git"
+        default: "https://github.com/CHRISL7/device_xiaomi_spes-TWRP.git"
       DEVICE_TREE_BRANCH:
         description: "DEVICE_TREE_BRANCH"
         required: true
@@ -97,6 +97,7 @@ jobs:
       - name: Clone Device Tree
         run: |
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
+          (cd device/xiaomi/spes && git fetch https://github.com/Kajal4414/device_xiaomi_spes-TWRP.git && git cherry-pick f7db809)
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
       - name: Check Build Tree
